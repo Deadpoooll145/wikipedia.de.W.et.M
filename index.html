@@ -1,1 +1,714 @@
 
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Chers Collègues</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Police style Wikipedia Authentique + Arabe Élégant */
+        @import url('https://fonts.googleapis.com/css2?family=Linux+Libertine:wght@400;700&family=Noto+Sans:wght@400;700&family=Amiri:wght@400;700&family=Playfair+Display:ital@0;1&display=swap');
+        
+        body {
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #202122;
+        }
+        
+        .arabic-text {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Décoration Islamique subtile pour le fond */
+        .islamic-bg {
+            background-color: #f3f4f6;
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+
+        /* Conteneur Principal style "Parchemin moderne" */
+        .main-container {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            border-top: 4px solid #059669; /* Touche verte */
+        }
+
+        /* Titres avec la police Serif typique de Wiki mais embellis */
+        h1, h2, h3 {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-weight: normal;
+        }
+        
+        h1 {
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+        }
+        
+        /* Petite décoration sous le H1 */
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background-color: #059669;
+        }
+        
+        h2 {
+            border-bottom: 1px solid #e5e7eb;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            padding-bottom: 8px;
+            color: #111827;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            font-size: 0.7em;
+            margin-right: 10px;
+            color: #059669; /* Icones vertes dans les titres */
+            opacity: 0.7;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            color: #374151;
+        }
+
+        /* Liens Wiki Bleus */
+        .wiki-link {
+            color: #3366cc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .wiki-link:hover {
+            text-decoration: underline;
+            color: #1e3a8a;
+        }
+
+        /* Infobox Classique mais propre */
+        .infobox {
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 4px; /* Double bordure effect */
+            font-size: 0.9rem;
+            width: 100%;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .infobox-inner {
+            border: 1px solid #cbd5e1;
+        }
+        @media (min-width: 768px) {
+            .infobox {
+                width: 320px;
+                float: right;
+                margin-left: 2rem;
+                margin-bottom: 1.5rem;
+                clear: right;
+            }
+        }
+        .infobox-header {
+            background: linear-gradient(to bottom, #e2e8f0, #cbd5e1);
+            text-align: center;
+            font-weight: bold;
+            padding: 10px;
+            font-size: 1.1rem;
+            font-family: 'Linux Libertine', serif;
+            letter-spacing: 0.5px;
+        }
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 12px;
+            border-bottom: 1px solid #eaecf0;
+            line-height: 1.4;
+            background-color: white;
+        }
+        .infobox-row:last-child {
+            border-bottom: none;
+        }
+        .infobox-label {
+            font-weight: bold;
+            width: 45%;
+            color: #4b5563;
+        }
+        
+        /* Table des matières */
+        .toc {
+            background-color: #f9fafb;
+            border: 1px solid #d1d5db;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 4px;
+            min-width: 250px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+        }
+
+        /* Tableaux de données */
+        .wikitable {
+            background-color: #ffffff;
+            color: #202122;
+            margin: 1em 0;
+            border: 1px solid #a2a9b1;
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 0.95rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+        .wikitable th {
+            background-color: #f3f4f6;
+            text-align: center;
+            padding: 0.8em;
+            border: 1px solid #a2a9b1;
+            font-family: 'Linux Libertine', serif;
+            font-weight: bold;
+        }
+        .wikitable td {
+            border: 1px solid #a2a9b1;
+            padding: 0.8em;
+            text-align: center;
+        }
+
+        .citation-needed {
+            font-size: 0.7em;
+            vertical-align: super;
+            color: #3366cc;
+        }
+
+        /* Séparateur Décoratif */
+        .separator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            opacity: 0.3;
+        }
+        .separator::before, .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #9ca3af;
+        }
+        .separator span {
+            padding: 0 10px;
+            font-size: 1.2rem;
+            color: #059669;
+        }
+
+        /* Login Screen */
+        #login-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 1.5s ease-out;
+        }
+        .login-box {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            border-top: 5px solid #10b981;
+            text-align: center;
+            width: 90%;
+            max-width: 420px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Success Animation Container */
+        #success-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 500;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .falling-item {
+            position: fixed;
+            top: -10%;
+            animation: fall linear forwards;
+            font-size: 2rem;
+            z-index: 501;
+            opacity: 0.8;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+        .success-msg {
+            font-family: 'Amiri', serif;
+            font-size: 3rem;
+            color: #b0c4de;
+            text-shadow: 2px 2px white;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        
+        /* Shake Animation */
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(3px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(1px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .shake-active {
+            animation: shake 0.5s;
+            animation-iteration-count: 1;
+            border-color: #ef4444 !important;
+        }
+
+    </style>
+</head>
+<body class="islamic-bg">
+
+    <!-- Écran de connexion -->
+    <div id="login-screen" class="islamic-bg">
+        <div class="login-box" id="login-box-content">
+            <div class="mb-2">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" alt="Logo" class="w-16 h-16 mx-auto opacity-90">
+            </div>
+            
+            <h2 class="text-2xl font-serif mb-1 border-none p-0 text-gray-800" style="margin-top:0;">Authentification Requise</h2>
+            <div class="flex justify-center mb-4">
+                <div class="h-0.5 w-16 bg-gradient-to-r from-transparent via-green-400 to-transparent"></div>
+            </div>
+
+            <div class="text-center mb-6 arabic-text text-3xl text-[#059669] drop-shadow-sm">بِسْمِ اللهِ</div>
+            
+            <p class="text-sm text-gray-500 mb-6 bg-gray-50 py-2 rounded border border-gray-100 mx-4">
+                <i class="fa-solid fa-key text-gray-400 mr-2"></i>Indice : <span class="font-bold text-gray-700">Devise</span>
+            </p>
+            
+            <input type="password" id="password-input" placeholder="Mot de passe..." 
+                   class="w-full p-3 border border-gray-300 rounded-lg mb-4 text-center text-lg focus:outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100 transition-all placeholder-gray-300">
+            
+            <button onclick="checkPassword()" 
+                    class="w-full bg-[#3366cc] hover:bg-[#254a9e] text-white px-6 py-3 rounded-lg font-bold transition shadow-sm transform hover:-translate-y-0.5">
+                Connexion
+            </button>
+            <p id="error-msg" class="text-red-500 text-sm mt-4 hidden font-medium transition-all"></p>
+        </div>
+        
+        <div id="success-container">
+            <h1 class="success-msg">Bravo Princesse ! ❤️</h1>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <div id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
+
+        <!-- Barre de navigation -->
+        <nav class="bg-white border-b border-gray-300 h-16 flex items-center sticky top-0 z-50 shadow-sm">
+            <div class="max-w-7xl mx-auto w-full px-4 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 overflow-hidden relative top-1">
+                        <i class="fa-solid fa-earth-americas text-4xl text-gray-600"></i>
+                    </div>
+                    <div class="leading-tight hidden sm:block">
+                        <div class="font-serif text-lg">Wikipédia</div>
+                        <div class="text-[10px] text-gray-500">L'encyclopédie de notre couple</div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 bg-gray-50 border border-gray-300 rounded px-3 py-1.5 w-full max-w-sm mx-4 focus-within:ring-1 focus-within:ring-blue-300 transition-all">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+                    <input type="text" placeholder="Rechercher dans Wikipédia" class="bg-transparent outline-none text-sm w-full">
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto md:flex bg-white min-h-screen main-container">
+            
+            <!-- Sidebar Gauche (Menu) -->
+            <aside class="hidden md:block w-48 pt-6 pl-6 pr-4 text-xs shrink-0 bg-[#f9fafb] border-r border-gray-200" style="min-height: calc(100vh - 64px);">
+                <div class="mb-6">
+                    <div class="font-bold text-gray-600 border-b border-gray-300 pb-1 mb-2">Navigation</div>
+                    <ul class="space-y-1.5 text-blue-600">
+                        <li><a href="#" class="hover:underline text-gray-800 font-bold">Accueil</a></li>
+                        <li><a href="#histoire" class="hover:underline">Histoire</a></li>
+                        <li><a href="#spirituel" class="hover:underline">Valeurs & Spiritualité</a></li>
+                        <li><a href="#lieux" class="hover:underline">Lieux Emblématiques</a></li>
+                        <li><a href="#stats" class="hover:underline">Statistiques</a></li>
+                    </ul>
+                </div>
+                <div class="text-center mt-10 opacity-50">
+                    <div class="arabic-text text-xl mb-1 text-green-700">ٱلْحَمْدُ لِلَّٰهِ</div>
+                    <div class="text-[10px]">Al-Ḥamdu lillāh</div>
+                </div>
+            </aside>
+
+            <!-- Contenu de l'article -->
+            <main class="flex-grow p-6 md:p-10 relative">
+                
+                <!-- Bismillah Header -->
+                <div class="text-center mb-8">
+                    <div class="arabic-text text-3xl text-[#059669]">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>
+                    <div class="flex justify-center mt-2 opacity-50">
+                         <i class="fa-solid fa-leaf text-xs text-green-600 mx-1"></i>
+                         <i class="fa-solid fa-leaf text-xs text-green-600 mx-1"></i>
+                         <i class="fa-solid fa-leaf text-xs text-green-600 mx-1"></i>
+                    </div>
+                </div>
+
+                <!-- Titre Article -->
+                <div class="flex items-baseline justify-between mb-6">
+                    <h1 class="w-full">Chers Collègues <span class="text-xl text-gray-500 font-normal font-sans">(Couple)</span></h1>
+                </div>
+                
+                <div class="absolute top-12 right-8 text-xs text-gray-500 hidden sm:block bg-yellow-50 px-2 py-1 rounded border border-yellow-200">
+                    <i class="fa-solid fa-lock text-yellow-600 mr-1"></i> Article protégé
+                </div>
+
+                <!-- Intro -->
+                <div class="text-[0.95rem] leading-7 text-gray-800">
+                    
+                    <!-- INFOBOX -->
+                    <div class="infobox">
+                        <div class="infobox-inner">
+                            <div class="infobox-header">Chers Collègues</div>
+                            <div class="bg-white p-4 text-center border-b border-[#eaecf0]">
+                                <div class="w-36 h-36 mx-auto bg-gray-50 flex items-center justify-center border border-gray-200 rounded-full mb-2 overflow-hidden shadow-inner">
+                                    <i class="fa-solid fa-users text-5xl text-gray-400"></i>
+                                </div>
+                                <div class="text-xs text-gray-500 italic">Le Duo en réunion (selfie)</div>
+                            </div>
+                            
+                            <div class="bg-white">
+                                <div class="infobox-row">
+                                    <span class="infobox-label">Création</span>
+                                    <span>Fin mars</span>
+                                </div>
+                                <div class="infobox-row">
+                                    <span class="infobox-label">Siège (QG)</span>
+                                    <span><a href="#" class="wiki-link">Villeneuve-St-Georges</a> (VSG 😉)</span>
+                                </div>
+                                <div class="infobox-row">
+                                    <span class="infobox-label">Alliance Clé (Mme)</span>
+                                    <span>Lena<br><span class="text-xs text-gray-500">(aka "Sœur Fillah")</span></span>
+                                </div>
+                                <div class="infobox-row">
+                                    <span class="infobox-label">Ennemis (Lui)</span>
+                                    <span>Ilan, Regards masculins</span>
+                                </div>
+                                <div class="infobox-row">
+                                    <span class="infobox-label">Ennemis (Elle)</span>
+                                    <span>Exs de Mr, Filles du Miams</span>
+                                </div>
+                                <div class="infobox-row">
+                                    <span class="infobox-label">Devise</span>
+                                    <span class="font-serif italic font-bold text-gray-800">ALV ALM</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Petite Box Spirituelle Décorative -->
+                    <div class="infobox" style="border: 1px solid #059669; padding: 2px;">
+                        <div class="bg-green-50 text-center p-3 border border-green-100">
+                            <div class="arabic-text text-3xl text-[#059669] mb-1">الْوَدُودُ</div>
+                            <div class="font-bold text-sm text-green-900 uppercase tracking-widest">Al-Wadud</div>
+                            <div class="text-xs text-gray-600 italic mt-1">Le Tout-Affectueux</div>
+                        </div>
+                        <div class="p-2 text-xs text-center bg-white text-gray-600 italic">
+                            "Il a mis entre vous de l'affection et de la bonté."
+                        </div>
+                    </div>
+
+                    <p class="mb-4">
+                        <b>Chers Collègues</b> (souvent abrégé en <i>La Team VSG</i>) est une organisation bilatérale fondée officiellement <a href="#" class="wiki-link">fin mars</a>. 
+                        Basée principalement à <b>Villeneuve-Saint-Georges</b>, l'entité se caractérise par une gestion commune des ressources émotionnelles et logistiques, régie par la devise fondatrice <i>"ALV ALM"</i>.
+                    </p>
+
+                    <!-- Table des matières -->
+                    <div class="toc mb-8">
+                        <div class="font-bold text-center text-sm mb-2 border-b pb-1">Sommaire</div>
+                        <ol class="list-decimal list-inside text-sm text-[#3366cc] space-y-1">
+                            <li><a href="#histoire" class="hover:underline">Histoire</a></li>
+                            <li><a href="#spirituel" class="hover:underline">Valeurs et Spiritualité</a></li>
+                            <li><a href="#lieux" class="hover:underline">Lieux Emblématiques</a></li>
+                            <li><a href="#langage" class="hover:underline">Terminologie</a></li>
+                            <li><a href="#stats" class="hover:underline">Compétences et Statistiques</a></li>
+                            <li><a href="#expansion" class="hover:underline">Projets d'Expansion</a></li>
+                            <li><a href="#references" class="hover:underline">Notes et références</a></li>
+                        </ol>
+                    </div>
+
+                    <div class="separator"><span>⚜️</span></div>
+
+                    <h2 id="histoire"><i class="fa-solid fa-book-open"></i> Histoire</h2>
+                    <p class="mb-4">
+                        L'événement fondateur, souvent cité dans les archives, n'est pas une déclaration classique mais une opération logistique : <b>être rentrés ensemble dans le bus</b>. 
+                        Ce trajet initial a marqué le début d'une collaboration exclusive<sup class="citation-needed">[1]</sup>.
+                    </p>
+
+                    <h2 id="spirituel"><i class="fa-solid fa-star-and-crescent"></i> Valeurs et Spiritualité</h2>
+                    <p class="mb-4">
+                        Au-delà de la logistique du quotidien, le couple fonde son union sur des principes religieux solides, considérant le mariage comme la moitié de la foi et un chemin vers l'apaisement.
+                    </p>
+                    
+                    <div class="bg-green-50 border-l-4 border-[#059669] p-5 mb-4 rounded-r shadow-sm">
+                        <div class="flex flex-col md:flex-row gap-4 items-center">
+                            <div class="text-center md:text-right md:w-1/3 border-b md:border-b-0 md:border-r border-green-200 pb-2 md:pb-0 md:pr-4">
+                                <div class="arabic-text text-xl text-gray-800 leading-loose">
+                                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+                                </div>
+                            </div>
+                            <div class="md:w-2/3">
+                                <div class="italic text-gray-800 font-serif text-lg mb-2">
+                                    "Et parmi Ses signes Il a créé de vous, pour vous, des épouses pour que vous viviez en tranquillité avec elles et Il a mis entre vous de l'affection et de la bonté."
+                                </div>
+                                <div class="text-xs text-[#059669] font-bold uppercase tracking-wide">— Sourate Ar-Rum (30:21)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 border-l-4 border-[#059669] p-5 mb-6 rounded-r shadow-sm">
+                        <div class="italic text-gray-800 font-serif text-lg mb-2">
+                            "Le meilleur d'entre vous est celui qui est le meilleur avec sa femme."
+                        </div>
+                        <div class="text-xs text-[#059669] font-bold uppercase tracking-wide">— Hadith (Rapporté par Tirmidhi)</div>
+                    </div>
+
+                    <div class="separator"><span>⚜️</span></div>
+
+                    <h2 id="lieux"><i class="fa-solid fa-map-location-dot"></i> Lieux Emblématiques</h2>
+                    <p class="mb-4">Le territoire du couple s'étend sur plusieurs zones stratégiques :</p>
+                    
+                    <h3 class="text-gray-900 border-none m-0 mb-2 pl-2 border-l-4 border-blue-200">Le Miams (Créteil)</h3>
+                    <div class="pl-4 mb-4">
+                        <p>
+                            Désigné comme "Sanctuaire gastronomique", cet établissement situé à <b>Créteil</b> est le théâtre d'opérations régulières. 
+                            Le protocole de sécurité y est maximal : Madame active un radar à 360° pour intercepter tout regard féminin suspect.
+                        </p>
+                    </div>
+
+                    <h3 class="text-gray-900 border-none m-0 mb-2 pl-2 border-l-4 border-blue-200">Le Spot (VSG)</h3>
+                    <div class="pl-4 mb-4">
+                        <p>
+                            Lieu confidentiel situé à VSG. Utilisé pour les débriefings stratégiques et la détente. Seuls les membres accrédités "ALV ALM" y ont accès.
+                        </p>
+                    </div>
+
+                    <h2 id="langage"><i class="fa-solid fa-comments"></i> Langage et Terminologie</h2>
+                    <p class="mb-4">Le couple a développé un dialecte propre comprenant plusieurs termes techniques :</p>
+                    <ul class="list-disc pl-6 mb-4 space-y-2 marker:text-[#059669]">
+                        <li>
+                            <b>Bidouf</b> <i>(n.m)</i> : Synonyme affectueux de "bisous". Utilisé généralement en fin de transmission ou pour apaiser une tension diplomatique.
+                        </li>
+                        <li>
+                            <b>Sœur Fillah</b> <i>(n.prop)</i> : Désigne <b>Lena</b>. Terme à haut risque : son usage intensif provoque une irritation visible chez le sujet masculin.
+                        </li>
+                        <li>
+                            <b>On mange quoi ?</b> <i>(expr.)</i> : Phrase prononcée quotidiennement à 19h30, entraînant une paralysie décisionnelle de 45 minutes.
+                        </li>
+                    </ul>
+
+                    <div class="separator"><span>⚜️</span></div>
+
+                    <h2 id="stats"><i class="fa-solid fa-chart-pie"></i> Compétences et Statistiques</h2>
+                    
+                    <h3 class="border-none">Chiffres Clés</h3>
+                    <ul class="list-disc pl-6 mb-4 marker:text-[#059669]">
+                        <li>Nombre de bus pris ensemble pour fonder le couple : <b>Un nombre incalculable</b></li>
+                        <li>Taux de réussite des blagues de Monsieur : <b>120%</b> <span class="text-xs text-gray-500">(Source : Lui-même)</span></li>
+                        <li>Nombre de "Je t'aime" échangés : <b>∞</b> (Infini)</li>
+                    </ul>
+
+                    <h3 class="border-none">Tableau Comparatif des Aptitudes</h3>
+                    <table class="wikitable">
+                        <tr>
+                            <th>Compétence</th>
+                            <th>Lui</th>
+                            <th>Elle</th>
+                            <th>Résultat</th>
+                        </tr>
+                        <tr>
+                            <td><b>Orientation (GPS)</b></td>
+                            <td>Expert</td>
+                            <td>Se perd dans le salon</td>
+                            <td><span class="text-green-600 font-bold">Lui gagne</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Jalousie (Radar)</b></td>
+                            <td>Niveau Élevé</td>
+                            <td>Niveau FBI</td>
+                            <td><span class="text-purple-600 font-bold">Elle gagne</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Mauvaise foi</b></td>
+                            <td>100%</td>
+                            <td>100%</td>
+                            <td><span class="text-gray-500 font-bold">Égalité parfaite</span></td>
+                        </tr>
+                    </table>
+
+                    <h2 id="expansion"><i class="fa-solid fa-rocket"></i> Projets d'Expansion</h2>
+                    <p>
+                        La direction envisage plusieurs axes de développement pour les prochains exercices fiscaux :
+                    </p>
+                    <ul class="list-disc pl-6 mb-4 marker:text-[#059669]">
+                        <li>Voyages diplomatiques (Vacances au soleil).</li>
+                        <li>Acquisition d'un nouveau siège social (Maison).</li>
+                        <li>Recrutement potentiel de stagiaires (Enfants/Animaux) à long terme.</li>
+                    </ul>
+
+                    <h2 id="references"><i class="fa-solid fa-quote-right"></i> Notes et références</h2>
+                    <div class="text-xs text-gray-600 space-y-1 pl-4 border-l-2 border-gray-200">
+                        <p>[1] Archives municipales des Transports en Commun.</p>
+                        <p>[2] Institut National du Kebab et du Tacos (INKT).</p>
+                        <p>[3] "T'inquiète c'est vrai, je l'ai vu" - Source anonyme.</p>
+                    </div>
+
+                    <!-- Conclusion Spirituelle -->
+                    <div class="text-center mt-16 mb-8 border-t border-gray-200 pt-10">
+                        <div class="mb-4 flex justify-center text-gray-300">
+                            <i class="fa-solid fa-heart mx-2"></i>
+                            <i class="fa-solid fa-infinity mx-2"></i>
+                            <i class="fa-solid fa-heart mx-2"></i>
+                        </div>
+                        <div class="arabic-text text-3xl text-gray-400 mb-2">إِنْ شَاءَ ٱللَّٰهُ</div>
+                        <p class="text-xl italic font-serif text-gray-800">
+                            "Pour toujours dans la Dunya et la Akhira."
+                        </p>
+                        <p class="text-4xl font-bold text-[#b0c4de] mt-6 font-serif drop-shadow-sm">
+                            Je t'aime ❤️<br>
+                            <span class="text-xl block mt-3 text-gray-400 font-normal tracking-wide">Ma princesse d'amour la plus belle du monde</span>
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-12 pt-6 border-t border-gray-300 text-xs text-gray-500 bg-gray-50 -mx-10 px-10 pb-4">
+                    <p class="mb-2">La dernière modification de cette page a été faite aujourd'hui avec beaucoup d'amour.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:underline text-blue-600">Politique de confidentialité</a>
+                        <a href="#" class="hover:underline text-blue-600">À propos de Wikipédia</a>
+                        <a href="#" class="hover:underline text-blue-600">Avertissements</a>
+                        <a href="#" class="hover:underline text-blue-600">Contact</a>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        let failedAttempts = 0;
+
+        function checkPassword() {
+            const input = document.getElementById('password-input');
+            const password = input.value.toLowerCase().trim();
+            const loginScreen = document.getElementById('login-screen');
+            const loginBox = document.getElementById('login-box-content');
+            const successContainer = document.getElementById('success-container');
+            const mainContent = document.getElementById('main-content');
+            const errorMsg = document.getElementById('error-msg');
+
+            // Reset animation
+            input.classList.remove('shake-active');
+            void input.offsetWidth; // Trigger reflow
+
+            // Mot de passe : alv alm
+            if (password === "alv alm") {
+                // Succès
+                input.classList.remove('border-red-500');
+                errorMsg.classList.add('hidden');
+                
+                // Cacher la boite de login
+                loginBox.style.display = 'none';
+                
+                // Lancer l'animation de succès
+                successContainer.style.display = 'flex';
+                createFallingElements(); // Pluie de fleurs/coeurs
+
+                // Attendre un peu puis afficher le site
+                setTimeout(() => {
+                    loginScreen.style.opacity = '0';
+                    
+                    setTimeout(() => {
+                        loginScreen.style.display = 'none';
+                        mainContent.classList.remove('hidden');
+                        setTimeout(() => {
+                            mainContent.classList.remove('opacity-0');
+                        }, 50);
+                    }, 1500); // Temps de la transition
+                }, 2500); // Temps pour voir "Bravo"
+
+            } else {
+                // Erreur
+                failedAttempts++;
+                
+                // Animation Shake
+                input.classList.add('shake-active');
+                input.classList.add('border-red-500');
+                
+                // Vider l'input et remettre le focus
+                input.value = "";
+                input.focus();
+                
+                // Message d'erreur progressif
+                errorMsg.classList.remove('hidden');
+                
+                if (failedAttempts < 5) {
+                    errorMsg.innerText = `Incorrect ! Tu me dois ${failedAttempts} Tasty Crousty !`;
+                } else {
+                    errorMsg.innerText = "Incorrect ! Maintenant tu me dois un Miam's EN PLUS du Tasty Crousty !";
+                }
+            }
+        }
+
+        // Fonction pour créer la pluie de coeurs/fleurs
+        function createFallingElements() {
+            const container = document.getElementById('success-container');
+            const symbols = ['🌸', '💖', '💗', '🌷', '✨'];
+            const colors = ['#fce7f3', '#fbcfe8', '#f9a8d4']; // Rose pâle
+            
+            for (let i = 0; i < 50; i++) {
+                const el = document.createElement('div');
+                el.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                el.classList.add('falling-item');
+                
+                // Position aléatoire
+                el.style.left = Math.random() * 100 + 'vw';
+                el.style.animationDuration = (Math.random() * 2 + 2) + 's'; // Entre 2 et 4s
+                el.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+                el.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(el);
+            }
+        }
+
+        document.getElementById('password-input').addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
