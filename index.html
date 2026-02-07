@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Chers Collègues</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Police style Wikipedia Authentique + Arabe Élégant */
+        @import url('https://fonts.googleapis.com/css2?family=Linux+Libertine:wght@400;700&family=Noto+Sans:wght@400;700&family=Amiri:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f0f0f0;
+            color: #202122;
+        }
+        
+        .arabic-text {
+            font-family: 'Amiri', serif;
+        }
+
+        /* Titres avec la police Serif typique de Wiki */
+        h1, h2, h3 {
+            font-family: 'Linux Libertine', 'Georgia', serif;
+            font-weight: normal;
+        }
+        
+        h1 {
+            border-bottom: 1px solid #a2a9b1;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+        
+        h2 {
+            border-bottom: 1px solid #a2a9b1;
+            margin-top: 1.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1rem;
+        }
+
+        /* Liens Wiki Bleus */
+        .wiki-link {
+            color: #3366cc;
+            text-decoration: none;
+        }
+        .wiki-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Infobox Classique mais propre */
+        .infobox {
+            border: 1px solid #a2a9b1;
+            background-color: #f8f9fa;
+            padding: 0.2rem;
+            font-size: 0.9rem;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        @media (min-width: 768px) {
+            .infobox {
+                width: 300px;
+                float: right;
+                margin-left: 1.5rem;
+                margin-bottom: 1rem;
+                clear: right;
+            }
+        }
+        .infobox-header {
+            background-color: #b0c4de;
+            text-align: center;
+            font-weight: bold;
+            padding: 8px;
+            font-size: 1.1rem;
+        }
+        .infobox-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 10px;
+            border-bottom: 1px solid #eaecf0;
+            line-height: 1.4;
+        }
+        .infobox-row:last-child {
+            border-bottom: none;
+        }
+        .infobox-label {
+            font-weight: bold;
+            width: 45%;
+            color: #202122;
+        }
+        
+        /* Table des matières */
+        .toc {
+            background-color: #f8f9fa;
+            border: 1px solid #a2a9b1;
+            display: inline-block;
+            padding: 15px;
+            border-radius: 2px;
+            min-width: 200px;
+        }
+
+        /* Tableaux de données */
+        .wikitable {
+            background-color: #f8f9fa;
+            color: #202122;
+            margin: 1em 0;
+            border: 1px solid #a2a9b1;
+            border-collapse: collapse;
+            width: 100%;
+            font-size: 0.9rem;
+        }
+        .wikitable th {
+            background-color: #eaecf0;
+            text-align: center;
+            padding: 0.5em 0.8em;
+            border: 1px solid #a2a9b1;
+        }
+        .wikitable td {
+            border: 1px solid #a2a9b1;
+            padding: 0.5em 0.8em;
+            text-align: center;
+        }
+
+        /* Login Screen */
+        #login-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+        .login-box {
+            background: white;
+            padding: 2.5rem;
+            border: 1px solid #a2a9b1;
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .citation-needed {
+            font-size: 0.7em;
+            vertical-align: super;
+            color: #3366cc;
+        }
+
+        /* Décoration Islamique subtile */
+        .islamic-pattern {
+            background-image: radial-gradient(#b0c4de 1px, transparent 1px);
+            background-size: 10px 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Écran de connexion -->
+    <div id="login-screen">
+        <div class="login-box">
+            <div class="mb-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/63/Wikipedia-logo.png" alt="Logo" class="w-16 h-16 mx-auto opacity-80">
+            </div>
+            <h2 class="text-xl font-serif mb-4 border-none p-0 text-gray-800">Authentification Requise</h2>
+            <div class="text-center mb-4 arabic-text text-2xl text-gray-600">بِسْمِ اللهِ</div>
+            <p class="text-sm text-gray-600 mb-6">Veuillez entrer le code de sécurité (Indice : Devise).</p>
+            
+            <input type="password" id="password-input" placeholder="Mot de passe..." 
+                   class="w-full p-2 border border-gray-400 mb-4 text-center focus:outline-none focus:border-blue-500">
+            
+            <button onclick="checkPassword()" 
+                    class="bg-[#3366cc] text-white px-6 py-2 rounded font-bold hover:bg-[#2a4b8d] transition text-sm">
+                Connexion
+            </button>
+            <p id="error-msg" class="text-red-600 text-xs mt-3 hidden font-bold">Code incorrect.</p>
+        </div>
+    </div>
+
+    <!-- Contenu Principal -->
+    <div id="main-content" class="hidden opacity-0 transition-opacity duration-1000">
+
+        <!-- Barre de navigation Wiki -->
+        <nav class="bg-white border-b border-gray-300 h-16 flex items-center sticky top-0 z-50">
+            <div class="max-w-7xl mx-auto w-full px-4 flex justify-between items-center">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 overflow-hidden relative top-1">
+                        <i class="fa-solid fa-earth-americas text-4xl text-gray-600"></i>
+                    </div>
+                    <div class="leading-tight hidden sm:block">
+                        <div class="font-serif text-lg">Wikipédia</div>
+                        <div class="text-[10px] text-gray-500">L'encyclopédie de notre couple</div>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-4 bg-gray-50 border border-gray-300 rounded px-3 py-1.5 w-full max-w-sm mx-4">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400 text-sm"></i>
+                    <input type="text" placeholder="Rechercher dans Wikipédia" class="bg-transparent outline-none text-sm w-full">
+                </div>
+            </div>
+        </nav>
+
+        <div class="max-w-7xl mx-auto md:flex bg-white min-h-screen border-l border-r border-gray-200">
+            
+            <!-- Sidebar Gauche (Menu) -->
+            <aside class="hidden md:block w-48 pt-6 pl-6 pr-4 text-xs shrink-0 bg-[#f6f6f6] border-r border-gray-200" style="min-height: calc(100vh - 64px);">
+                <div class="mb-6">
+                    <div class="font-bold text-gray-600 border-b border-gray-300 pb-1 mb-2">Navigation</div>
+                    <ul class="space-y-1.5 text-blue-600">
+                        <li><a href="#" class="hover:underline text-gray-800 font-bold">Accueil</a></li>
+                        <li><a href="#histoire" class="hover:underline">Histoire</a></li>
+                        <li><a href="#spirituel" class="hover:underline">Valeurs & Spiritualité</a></li>
+                        <li><a href="#lieux" class="hover:underline">Lieux Emblématiques</a></li>
+                        <li><a href="#stats" class="hover:underline">Statistiques</a></li>
+                    </ul>
+                </div>
+                <div class="text-center mt-10 opacity-50">
+                    <div class="arabic-text text-xl mb-1">ٱلْحَمْدُ لِلَّٰهِ</div>
+                    <div class="text-[10px]">Al-Ḥamdu lillāh</div>
+                </div>
+            </aside>
+
+            <!-- Contenu de l'article -->
+            <main class="flex-grow p-6 md:p-8">
+                
+                <!-- Bismillah Header -->
+                <div class="text-center mb-6 text-gray-500">
+                    <div class="arabic-text text-3xl">بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيمِ</div>
+                    <div class="text-[10px] uppercase tracking-widest mt-1">Au nom d'Allah, le Tout Miséricordieux, le Très Miséricordieux</div>
+                </div>
+
+                <!-- Titre Article -->
+                <div class="flex items-baseline justify-between border-b border-[#a2a9b1] mb-6">
+                    <h1 class="border-none mb-0 pb-1">Chers Collègues <span class="text-xl text-gray-500 font-normal">(Couple)</span></h1>
+                    <div class="text-xs text-gray-500 hidden sm:block">
+                        <i class="fa-solid fa-lock text-yellow-600"></i> Article protégé
+                    </div>
+                </div>
+
+                <!-- Intro -->
+                <div class="text-[0.95rem] leading-7 text-gray-800">
+                    
+                    <!-- INFOBOX -->
+                    <div class="infobox shadow-sm">
+                        <div class="infobox-header">Chers Collègues</div>
+                        <div class="bg-white p-4 text-center border-b border-[#eaecf0]">
+                            <div class="w-36 h-36 mx-auto bg-gray-100 flex items-center justify-center border border-gray-300 mb-2 overflow-hidden">
+                                <!-- Place pour image ou icône -->
+                                <i class="fa-solid fa-users text-5xl text-gray-400"></i>
+                            </div>
+                            <div class="text-xs">Le Duo en réunion (selfie)</div>
+                        </div>
+                        
+                        <div class="bg-white">
+                            <div class="infobox-row">
+                                <span class="infobox-label">Création</span>
+                                <span>Fin mars</span>
+                            </div>
+                            <div class="infobox-row">
+                                <span class="infobox-label">Siège (QG)</span>
+                                <span><a href="#" class="wiki-link">Villeneuve-St-Georges</a> (VSG 😉)</span>
+                            </div>
+                            <div class="infobox-row">
+                                <span class="infobox-label">Alliance Clé (Mme)</span>
+                                <span>Lena<br><span class="text-xs text-gray-500">(aka "Sœur Fillah")</span></span>
+                            </div>
+                            <div class="infobox-row">
+                                <span class="infobox-label">Ennemis (Lui)</span>
+                                <span>Ilan, Regards masculins</span>
+                            </div>
+                            <div class="infobox-row">
+                                <span class="infobox-label">Ennemis (Elle)</span>
+                                <span>Exs de Mr, Filles du Miams</span>
+                            </div>
+                            <div class="infobox-row">
+                                <span class="infobox-label">Devise</span>
+                                <span><i>ALV ALM</i></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Petite Box Spirituelle Décorative -->
+                    <div class="infobox shadow-sm" style="border-top: 3px solid #4ade80;">
+                        <div class="bg-green-50 text-center p-2 border-b border-[#eaecf0]">
+                            <div class="arabic-text text-2xl text-green-800">الْوَدُودُ</div>
+                            <div class="font-bold text-sm text-green-900">Al-Wadud</div>
+                            <div class="text-xs text-gray-600 italic">Le Tout-Affectueux</div>
+                        </div>
+                        <div class="p-2 text-xs text-center bg-white text-gray-600">
+                            Attribut divin symbolisant l'amour pur et la bienveillance dans l'union.
+                        </div>
+                    </div>
+
+                    <p class="mb-4">
+                        <b>Chers Collègues</b> (souvent abrégé en <i>La Team VSG</i>) est une organisation bilatérale fondée officiellement <a href="#" class="wiki-link">fin mars</a>. 
+                        Basée principalement à <b>Villeneuve-Saint-Georges</b>, l'entité se caractérise par une gestion commune des ressources émotionnelles et logistiques, régie par la devise fondatrice <i>"ALV ALM"</i>.
+                    </p>
+
+                    <!-- Table des matières -->
+                    <div class="toc mb-8">
+                        <div class="font-bold text-center text-sm mb-2">Sommaire</div>
+                        <ol class="list-decimal list-inside text-sm text-[#3366cc] space-y-1">
+                            <li><a href="#histoire" class="hover:underline">Histoire</a></li>
+                            <li><a href="#spirituel" class="hover:underline">Valeurs et Spiritualité</a></li>
+                            <li><a href="#lieux" class="hover:underline">Lieux Emblématiques</a></li>
+                            <li><a href="#langage" class="hover:underline">Terminologie</a></li>
+                            <li><a href="#stats" class="hover:underline">Compétences et Statistiques</a></li>
+                            <li><a href="#expansion" class="hover:underline">Projets d'Expansion</a></li>
+                            <li><a href="#references" class="hover:underline">Notes et références</a></li>
+                        </ol>
+                    </div>
+
+                    <h2 id="histoire">Histoire</h2>
+                    <p class="mb-4">
+                        L'événement fondateur, souvent cité dans les archives, n'est pas une déclaration classique mais une opération logistique : <b>être rentrés ensemble dans le bus</b>. 
+                        Ce trajet initial a marqué le début d'une collaboration exclusive<sup class="citation-needed">[1]</sup>.
+                    </p>
+
+                    <h2 id="spirituel">Valeurs et Spiritualité</h2>
+                    <p class="mb-4">
+                        Au-delà de la logistique du quotidien, le couple fonde son union sur des principes religieux solides, considérant le mariage comme la moitié de la foi et un chemin vers l'apaisement.
+                    </p>
+                    
+                    <div class="bg-green-50 border-l-4 border-green-600 p-4 mb-4 rounded-r shadow-sm">
+                        <div class="flex flex-col md:flex-row gap-4 items-center">
+                            <div class="text-center md:text-right md:w-1/3 border-b md:border-b-0 md:border-r border-green-200 pb-2 md:pb-0 md:pr-4">
+                                <div class="arabic-text text-xl text-gray-800 leading-loose">
+                                    وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا
+                                </div>
+                            </div>
+                            <div class="md:w-2/3">
+                                <div class="italic text-gray-800 font-serif text-lg mb-2">
+                                    "Et parmi Ses signes Il a créé de vous, pour vous, des épouses pour que vous viviez en tranquillité avec elles et Il a mis entre vous de l'affection et de la bonté."
+                                </div>
+                                <div class="text-xs text-green-800 font-bold uppercase tracking-wide">— Sourate Ar-Rum (30:21)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 border-l-4 border-green-600 p-4 mb-6 rounded-r shadow-sm">
+                        <div class="italic text-gray-800 font-serif text-lg mb-2">
+                            "Le meilleur d'entre vous est celui qui est le meilleur avec sa femme."
+                        </div>
+                        <div class="text-xs text-green-800 font-bold uppercase tracking-wide">— Hadith (Rapporté par Tirmidhi)</div>
+                    </div>
+
+                    <h2 id="lieux">Lieux Emblématiques</h2>
+                    <p class="mb-4">Le territoire du couple s'étend sur plusieurs zones stratégiques :</p>
+                    
+                    <h3 class="text-gray-900 border-none m-0 mb-2">Le Miams (Créteil)</h3>
+                    <div class="pl-4 border-l-4 border-gray-200 mb-4">
+                        <p>
+                            Désigné comme "Sanctuaire gastronomique", cet établissement situé à <b>Créteil</b> est le théâtre d'opérations régulières. 
+                            Le protocole de sécurité y est maximal : Madame active un radar à 360° pour intercepter tout regard féminin suspect.
+                        </p>
+                    </div>
+
+                    <h3 class="text-gray-900 border-none m-0 mb-2">Le Spot (VSG)</h3>
+                    <div class="pl-4 border-l-4 border-gray-200 mb-4">
+                        <p>
+                            Lieu confidentiel situé à VSG. Utilisé pour les débriefings stratégiques et la détente. Seuls les membres accrédités "ALV ALM" y ont accès.
+                        </p>
+                    </div>
+
+                    <h2 id="langage">Langage et Terminologie</h2>
+                    <p class="mb-4">Le couple a développé un dialecte propre comprenant plusieurs termes techniques :</p>
+                    <ul class="list-disc pl-6 mb-4 space-y-2">
+                        <li>
+                            <b>Bidouf</b> <i>(n.m)</i> : Synonyme affectueux de "bisous". Utilisé généralement en fin de transmission ou pour apaiser une tension diplomatique.
+                        </li>
+                        <li>
+                            <b>Sœur Fillah</b> <i>(n.prop)</i> : Désigne <b>Lena</b>. Terme à haut risque : son usage intensif provoque une irritation visible chez le sujet masculin.
+                        </li>
+                        <li>
+                            <b>On mange quoi ?</b> <i>(expr.)</i> : Phrase prononcée quotidiennement à 19h30, entraînant une paralysie décisionnelle de 45 minutes.
+                        </li>
+                    </ul>
+
+                    <h2 id="stats">Compétences et Statistiques</h2>
+                    
+                    <h3 class="border-none">Chiffres Clés</h3>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>Nombre de bus pris ensemble pour fonder le couple : <b>Un nombre incalculable</b></li>
+                        <li>Taux de réussite des blagues de Monsieur : <b>120%</b> <span class="text-xs text-gray-500">(Source : Lui-même)</span></li>
+                        <li>Nombre de "Je t'aime" échangés : <b>∞</b> (Infini)</li>
+                    </ul>
+
+                    <h3 class="border-none">Tableau Comparatif des Aptitudes</h3>
+                    <table class="wikitable">
+                        <tr>
+                            <th>Compétence</th>
+                            <th>Lui</th>
+                            <th>Elle</th>
+                            <th>Résultat</th>
+                        </tr>
+                        <tr>
+                            <td><b>Orientation (GPS)</b></td>
+                            <td>Expert</td>
+                            <td>Se perd dans le salon</td>
+                            <td>Lui gagne</td>
+                        </tr>
+                        <tr>
+                            <td><b>Jalousie (Radar)</b></td>
+                            <td>Niveau Élevé</td>
+                            <td>Niveau FBI</td>
+                            <td>Elle gagne</td>
+                        </tr>
+                        <tr>
+                            <td><b>Mauvaise foi</b></td>
+                            <td>100%</td>
+                            <td>100%</td>
+                            <td>Égalité parfaite</td>
+                        </tr>
+                    </table>
+
+                    <h2 id="expansion">Projets d'Expansion</h2>
+                    <p>
+                        La direction envisage plusieurs axes de développement pour les prochains exercices fiscaux :
+                    </p>
+                    <ul class="list-disc pl-6 mb-4">
+                        <li>Voyages diplomatiques (Vacances au soleil).</li>
+                        <li>Acquisition d'un nouveau siège social (Maison).</li>
+                        <li>Recrutement potentiel de stagiaires (Enfants/Animaux) à long terme.</li>
+                    </ul>
+
+                    <h2 id="references">Notes et références</h2>
+                    <div class="text-xs text-gray-600 space-y-1">
+                        <p>[1] Archives municipales des Transports en Commun.</p>
+                        <p>[2] Institut National du Kebab et du Tacos (INKT).</p>
+                        <p>[3] "T'inquiète c'est vrai, je l'ai vu" - Source anonyme.</p>
+                    </div>
+
+                    <!-- Conclusion Spirituelle -->
+                    <div class="text-center mt-16 mb-8 border-t border-gray-200 pt-8">
+                        <div class="arabic-text text-2xl text-gray-400 mb-2">إِنْ شَاءَ ٱللَّٰهُ</div>
+                        <p class="text-xl italic font-serif text-gray-800">
+                            "Pour toujours dans la Dunya et la Akhira."
+                        </p>
+                        <p class="text-4xl font-bold text-[#b0c4de] mt-4 font-serif drop-shadow-sm">
+                            Je t'aime ❤️
+                        </p>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="mt-12 pt-4 border-t border-gray-300 text-xs text-gray-500">
+                    <p class="mb-2">La dernière modification de cette page a été faite aujourd'hui.</p>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:underline text-blue-600">Politique de confidentialité</a>
+                        <a href="#" class="hover:underline text-blue-600">À propos de Wikipédia</a>
+                        <a href="#" class="hover:underline text-blue-600">Avertissements</a>
+                        <a href="#" class="hover:underline text-blue-600">Contact</a>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById('password-input').value.toLowerCase().trim();
+            const loginScreen = document.getElementById('login-screen');
+            const mainContent = document.getElementById('main-content');
+            const errorMsg = document.getElementById('error-msg');
+
+            // Mot de passe : alv alm
+            if (input === "alv alm") {
+                loginScreen.style.opacity = '0';
+                setTimeout(() => {
+                    loginScreen.style.display = 'none';
+                    mainContent.classList.remove('hidden');
+                    // Petit délai pour l'animation d'apparition
+                    setTimeout(() => {
+                        mainContent.classList.remove('opacity-0');
+                    }, 50);
+                }, 500);
+            } else {
+                errorMsg.classList.remove('hidden');
+                document.getElementById('password-input').classList.add('border-red-500');
+            }
+        }
+
+        document.getElementById('password-input').addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
+</body>
+</html>
